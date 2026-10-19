@@ -13,8 +13,40 @@
 @media(max-width:850px){.hero{grid-template-columns:1fr;gap:0;padding-top:65px}.hero-copy{max-width:680px}.hero-visual{height:410px;margin-top:20px}.feature-grid{grid-template-columns:1fr 1fr}.feature-card.large{grid-row:span 1;min-height:320px}.feature-card{min-height:300px}.mini-chat{position:static;margin-top:30px}.device-layout{gap:35px}.security-panel{padding:35px;gap:30px}}@media(max-width:620px){.wrap{width:min(100% - 32px,var(--max))}.nav{height:70px}.nav nav,.nav-cta{display:none}.menu-toggle{display:block}.nav nav.open{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:#101222;border:1px solid var(--line);border-radius:12px;padding:8px}.nav nav.open a{padding:12px}.hero{padding-top:48px;padding-bottom:38px}.hero h1{font-size:clamp(43px,12vw,62px)}.hero-sub{font-size:14px}.hero-visual{height:335px;transform:scale(.88);margin:-5px -25px 0}.orbit-one{width:330px}.orbit-two{width:350px;height:225px}.orbit-three{width:290px;height:290px}.core{width:145px;height:145px}.core-letter{font-size:65px}.card-top{right:-4px;top:20px}.card-bottom{left:-4px;bottom:20px}.float-card{padding:10px}.section{padding-top:70px;padding-bottom:70px}.section-head{display:block}.section-head>p{margin-top:16px}.feature-grid{grid-template-columns:1fr}.feature-card,.feature-card.large{min-height:250px}.feature-card.large{min-height:320px}.device-section{padding:70px 0}.device-layout{grid-template-columns:1fr;gap:35px}.device-preview{transform:none}.preview-body{padding:16px}.security-section{padding-top:60px;padding-bottom:60px}.security-panel{grid-template-columns:1fr;padding:24px;gap:20px}.security-art{height:190px}.security-copy h2{font-size:37px}.security-copy ul{grid-template-columns:1fr}.get-started{padding-top:55px;padding-bottom:65px}.availability-note{line-height:1.6;text-align:left}.footer-inner{padding:22px 0;flex-wrap:wrap}.footer-inner>span{order:3;width:100%}.footer-inner>div{gap:12px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 
 </style><title>JARVIS — Personal AI Command Center</title>
+
+<style id="jarvis-pin-lock-styles">
+#jarvis-pin-lock{position:fixed;inset:0;z-index:999999;display:grid;place-items:center;padding:20px;background:radial-gradient(ellipse at 50% 25%,#25204c 0%,#080914 65%);backdrop-filter:blur(18px);font-family:Inter,system-ui,sans-serif;color:#f2f4ff}
+#jarvis-pin-lock[hidden]{display:none}
+.jpl-panel{width:min(100%,360px);padding:28px 24px;border:1px solid #a89aff66;border-radius:22px;background:linear-gradient(145deg,#15172bee,#0a0b18f5);box-shadow:0 25px 90px #0009,0 0 45px #76f0f41a;text-align:center}
+.jpl-logo{width:62px;height:62px;margin:0 auto 18px;border:1px solid #76f0f4;border-radius:19px;display:grid;place-items:center;color:#76f0f4;font-size:30px;box-shadow:0 0 32px #76f0f433}
+.jpl-panel h2{margin:0;font-size:24px;letter-spacing:.12em}.jpl-panel p{color:#a5abc7;font-size:11px;margin:8px 0 20px;letter-spacing:.08em}
+#jpl-display{height:48px;border:1px solid #a89aff44;background:#080914;border-radius:10px;margin:0 0 14px;display:grid;place-items:center;letter-spacing:.7em;font-size:22px;color:#76f0f4}
+.jpl-keys{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.jpl-keys button{min-height:48px;border-radius:10px;border:1px solid #8b96c833;background:#171a30;color:#f2f4ff;font-size:17px;font-weight:700;cursor:pointer}
+.jpl-keys button:focus-visible{outline:2px solid #76f0f4;outline-offset:2px}.jpl-keys button:active{background:#29274a}
+.jpl-keys .jpl-action{font-size:11px;color:#76f0f4}
+#jpl-error{min-height:18px;color:#ff9bb5!important;margin:12px 0 0!important;letter-spacing:0!important}
+</style>
+
 </head>
 <body>
+
+<div id="jarvis-pin-lock" role="dialog" aria-modal="true" aria-labelledby="jpl-title">
+  <div class="jpl-panel">
+    <div class="jpl-logo" aria-hidden="true">J</div>
+    <h2 id="jpl-title">J.A.R.V.I.S.</h2>
+    <p>SECURE ACCESS · ENTER 4-DIGIT PIN</p>
+    <div id="jpl-display" aria-label="Four digit PIN">○ ○ ○ ○</div>
+    <div class="jpl-keys">
+      <button type="button" data-jpl-key="1">1</button><button type="button" data-jpl-key="2">2</button><button type="button" data-jpl-key="3">3</button>
+      <button type="button" data-jpl-key="4">4</button><button type="button" data-jpl-key="5">5</button><button type="button" data-jpl-key="6">6</button>
+      <button type="button" data-jpl-key="7">7</button><button type="button" data-jpl-key="8">8</button><button type="button" data-jpl-key="9">9</button>
+      <button type="button" class="jpl-action" data-jpl-key="clear">CLEAR</button><button type="button" data-jpl-key="0">0</button><button type="button" class="jpl-action" data-jpl-key="enter">ENTER ↵</button>
+    </div>
+    <p id="jpl-error" aria-live="polite"></p>
+  </div>
+</div>
+
   <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
   <header class="nav wrap"><a class="brand" href="#top" aria-label="JARVIS home"><span class="brand-mark">J</span><span>J.A.R.V.I.S<span class="brand-dot">.</span></span></a><nav><a href="#features">Features</a><a href="#devices">Devices</a><a href="#security">Security</a></nav><a class="nav-cta" href="#get-started">Get started <span>↗</span></a><button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button></header>
   <main id="top">
@@ -47,4 +79,44 @@ document.querySelector('.deny-demo')?.addEventListener('click', () => {
 
 
 </script>
+
+<script id="jarvis-pin-lock-script">
+(() => {
+  const overlay = document.getElementById('jarvis-pin-lock');
+  if (!overlay) return;
+  const display = document.getElementById('jpl-display');
+  const error = document.getElementById('jpl-error');
+  let pin = '';
+  const paint = () => { display.textContent = Array.from({length:4}, (_, i) => i < pin.length ? '●' : '○').join(' '); };
+  const submit = () => {
+    if (pin === '0103') {
+      overlay.hidden = true;
+      document.body.style.overflow = '';
+      document.querySelector('main')?.focus?.({preventScroll:true});
+    } else {
+      error.textContent = 'Incorrect PIN. Try again.';
+      pin = '';
+      paint();
+    }
+  };
+  overlay.querySelectorAll('[data-jpl-key]').forEach(button => button.addEventListener('click', () => {
+    const key = button.dataset.jplKey;
+    error.textContent = '';
+    if (key === 'clear') { pin = ''; paint(); return; }
+    if (key === 'enter') { submit(); return; }
+    if (pin.length < 4) pin += key;
+    paint();
+    if (pin.length === 4) submit();
+  }));
+  document.addEventListener('keydown', event => {
+    if (overlay.hidden) return;
+    if (/^[0-9]$/.test(event.key) && pin.length < 4) { pin += event.key; paint(); }
+    else if (event.key === 'Backspace') { pin = pin.slice(0, -1); paint(); }
+    else if (event.key === 'Enter') submit();
+  });
+  document.body.style.overflow = 'hidden';
+  paint();
+})();
+</script>
+
 </body></html>

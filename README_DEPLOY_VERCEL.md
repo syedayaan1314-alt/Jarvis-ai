@@ -21,3 +21,8 @@ Official docs:
 - Do not expose the local Flask server or desktop agents directly to the internet. Before connecting live AI or device control, deploy a secure backend with authentication, authorization, rate limiting, audit logs, device revocation, and server-side API secrets.
 - Add a real privacy policy and contact/support details before collecting user data or submitting apps to stores.
 - Deployment is not complete until you sign into Vercel, deploy, add the domain, configure DNS, and verify the live HTTPS site. This package itself does not publish anything.
+
+
+## Updated PIN lock
+The website now shows a keypad before the main interface. The demo PIN is `0103`.
+This PIN is checked in browser JavaScript, so it is only a visual/demo lock and is NOT strong security for private information. Use server-side authentication for real protection.
